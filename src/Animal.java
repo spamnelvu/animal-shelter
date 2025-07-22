@@ -1,12 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Animal {
     private String name;
-    private SmsSender smsSender;
-    private EmailSender emailSender;
+    private List<Sender> senders = new ArrayList<>();
 
-    public Animal(String name, SmsSender smsSender, EmailSender emailSender){
+    public Animal(String name){
         this.name = name;
-        this.smsSender = smsSender;
-        this.emailSender = emailSender;
+    }
+
+    public void addSender(Sender sender){
+        senders.add(sender);
     }
 
     public String getName() {
@@ -17,8 +21,9 @@ public abstract class Animal {
         if(name != null && !name.isEmpty()){
             String oldName = this.getName();
             this.name = name;
-            emailSender.sendNotificationAboutAnimalChangedName(this, oldName, name);
-            smsSender.sendNotificationAboutAnimalChangedName(this, oldName, name);
+            for (int i = 0; i < senders.size(); i++) {
+                senders.get(i).sendNotificationAboutAnimalChangedName(this, oldName, name);
+            }
         } else throw new RuntimeException("Imię tego jebanego psa nie może być nullem albo puste zależy co sie stało");
     }
 
