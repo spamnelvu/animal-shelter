@@ -17,8 +17,8 @@ public abstract class Animal {
         if(name != null && !name.isEmpty()){
             String oldName = this.getName();
             this.name = name;
-            emailSender.sendEmailAboutDogsChangedName(this, oldName, name);
-            smsSender.sendSmsAboutDogsChangedName(this, oldName, name);
+            emailSender.sendNotificationAboutAnimalChangedName(this, oldName, name);
+            smsSender.sendNotificationAboutAnimalChangedName(this, oldName, name);
         } else throw new RuntimeException("Imię tego jebanego psa nie może być nullem albo puste zależy co sie stało");
     }
 
