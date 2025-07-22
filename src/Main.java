@@ -11,8 +11,8 @@ public class Main {
         senders.add(new DonateSender());
 
         Dog dog = new Dog("fafik");
-        for (int i = 0; i < senders.size(); i++) {
-            dog.addSender(senders.get(i));
+        for (Sender sender : senders) {
+            dog.addSender(sender);
         }
         dog.setName("sasza");
         dog.setName("paweł");

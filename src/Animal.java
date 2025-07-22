@@ -21,8 +21,8 @@ public abstract class Animal {
         if(name != null && !name.isEmpty()){
             String oldName = this.getName();
             this.name = name;
-            for (int i = 0; i < senders.size(); i++) {
-                senders.get(i).sendNotificationAboutAnimalChangedName(this, oldName, name);
+            for (Sender sender : senders) {
+                sender.sendNotificationAboutAnimalChangedName(this, oldName, name);
             }
         } else throw new RuntimeException("Imię tego jebanego psa nie może być nullem albo puste zależy co sie stało");
     }
